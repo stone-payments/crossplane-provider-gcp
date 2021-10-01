@@ -55,6 +55,7 @@ func params(m ...func(*v1beta1.CloudSQLInstanceParameters)) *v1beta1.CloudSQLIns
 			BackupConfiguration: &v1beta1.BackupConfiguration{
 				BinaryLogEnabled:               gcp.BoolPtr(true),
 				Enabled:                        gcp.BoolPtr(false),
+				PointInTimeRecoveryEnabled:     gcp.BoolPtr(false),
 				Location:                       gcp.StringPtr("us-west1"),
 				ReplicationLogArchivingEnabled: gcp.BoolPtr(true),
 				StartTime:                      gcp.StringPtr("20191018"),
@@ -162,6 +163,7 @@ func db(m ...func(*sqladmin.DatabaseInstance)) *sqladmin.DatabaseInstance {
 			BackupConfiguration: &sqladmin.BackupConfiguration{
 				BinaryLogEnabled:               true,
 				Enabled:                        false,
+				PointInTimeRecoveryEnabled:     false,
 				Location:                       "us-west1",
 				ReplicationLogArchivingEnabled: true,
 				StartTime:                      "20191018",

@@ -89,6 +89,7 @@ func GenerateDatabaseInstance(name string, in v1beta1.CloudSQLInstanceParameters
 		}
 		db.Settings.BackupConfiguration.BinaryLogEnabled = gcp.BoolValue(in.Settings.BackupConfiguration.BinaryLogEnabled)
 		db.Settings.BackupConfiguration.Enabled = gcp.BoolValue(in.Settings.BackupConfiguration.Enabled)
+		db.Settings.BackupConfiguration.PointInTimeRecoveryEnabled = gcp.BoolValue(in.Settings.BackupConfiguration.PointInTimeRecoveryEnabled)
 		db.Settings.BackupConfiguration.Location = gcp.StringValue(in.Settings.BackupConfiguration.Location)
 		db.Settings.BackupConfiguration.ReplicationLogArchivingEnabled = gcp.BoolValue(in.Settings.BackupConfiguration.ReplicationLogArchivingEnabled)
 		db.Settings.BackupConfiguration.StartTime = gcp.StringValue(in.Settings.BackupConfiguration.StartTime)
@@ -228,6 +229,9 @@ func LateInitializeSpec(spec *v1beta1.CloudSQLInstanceParameters, in sqladmin.Da
 			spec.Settings.BackupConfiguration.Enabled = gcp.LateInitializeBool(
 				spec.Settings.BackupConfiguration.Enabled,
 				in.Settings.BackupConfiguration.Enabled)
+			spec.Settings.BackupConfiguration.PointInTimeRecoveryEnabled = gcp.LateInitializeBool(
+				spec.Settings.BackupConfiguration.PointInTimeRecoveryEnabled,
+				in.Settings.BackupConfiguration.PointInTimeRecoveryEnabled)
 			spec.Settings.BackupConfiguration.Location = gcp.LateInitializeString(
 				spec.Settings.BackupConfiguration.Location,
 				in.Settings.BackupConfiguration.Location)
